@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emotion Detection in Text</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Chart.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Navigation Bar -->
+        <div class="nav-buttons">
+            <button id="uploadTabButton" class="active" onclick="showTab('fileUploadTab', this)">Upload Excel</button>
+            <button id="dynamicTabButton" onclick="showTab('textboxTab', this)">Dynamic Detection</button>
+        </div>
+
+        <!-- Tab: File Upload Section -->
+        <div id="fileUploadTab">
+            <h1>Emotion Detection in Text</h1>
+            <p>Upload an Excel sheet with comments to detect emotions.</p>
+            <input type="file" id="fileInput" accept=".xlsx" />
+            <button id="submitButton" onclick="submitFile()">Submit</button>
+            <div id="loader" class="loader" style="display: none;"></div>
+
+            <!-- Response Section -->
+            <div id="response" style="display: none;">
+                <h2>Processing Complete</h2>
+                <p id="responseText">Emotion analysis completed successfully.</p>
+
+                <!-- Chart Section -->
+                <div id="chartContainer" style="display: none; width: 100%; max-width: 600px; margin: 0 auto;">
+                    <canvas id="emotionChart"></canvas>
+                </div>
+
+                <!-- Emotion Ratings Table -->
+                <div id="ratingsContainer">
+                    <h3>Emotion Ratings</h3>
+                    <table id="ratingsTable">
+                        <tr>
+                            <th>Emotion</th>
+                            <th>Rating (out of 5)</th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Dynamic Textbox Detection -->
+        <div id="textboxTab" style="display: none;">
+            <h1>Dynamic Emotion Detection</h1>
+            <textarea id="userText" rows="4" cols="50" placeholder="Type your text here..."></textarea>
+            <button onclick="analyzeText()">Analyze</button>
+            <div id="textEmotionResult"></div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
